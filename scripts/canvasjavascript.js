@@ -11,7 +11,7 @@ require.config({
     //...
 });
 
-require([   
+require([
     'scripts/physicsjs-0.6.0/physicsjs-full-0.6.0',
     'scripts/Sprites/target',
     'scripts/Sprites/pokeball',
@@ -71,7 +71,7 @@ Physics(function(world){
   target.view.src = "img/pokemon/bulbasaur.png";
   world.add(target);
   var trainer = new Image();
-  trainer.src = "img/trainer/2-GymLeaderMisty.png";
+  trainer.src = "img/trainer/gyms/2-GymLeaderMisty.png";
   world.add(
     Physics.body('target', {
       x:30,
