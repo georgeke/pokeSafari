@@ -25,7 +25,9 @@ function(
                 var scratch = Physics.scratchpad();
                 var self = this;
                 var world = self._world;
-                world.removeBody(self);
+                if (world) {
+                    world.removeBody(self);
+                }
                 scratch.done();
             }
 	    };

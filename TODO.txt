@@ -1,0 +1,13 @@
+- add tab to change stages
+- map images to names to IDs
+	- able to scroll through upgrades
+	- buy upgrades
+- calculate stats on the fly
+- fix throwing physics
+- add enemy dying, add money
+- add pokemon for each stage
+	- add chances for shiny, special, etc
+- pokedex working
+	- global dictionary storing each catch
+- add importing/exporting
+- add caching
