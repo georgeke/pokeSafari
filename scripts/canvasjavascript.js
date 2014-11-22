@@ -61,11 +61,11 @@ Physics(function(world){
       cof: 0.99
   }));
   world.add(Physics.behavior('body-collision-detection'));
-
+  world.add(Physics.behavior('sweep-prune'));
   var target = Physics.body('target', {
     x:800,
     y:250,
-    radius:100,
+  //  radius:20,
     view: new Image()
   });
   target.view.src = "img/pokemon/bulbasaur.png";
@@ -76,6 +76,7 @@ Physics(function(world){
     Physics.body('target', {
       x:30,
       y:250,
+      radius:0,
       view: trainer
     })
   );
@@ -87,7 +88,7 @@ Physics(function(world){
   document.onmousedown = function(event) {
       world.add(
         Physics.body('pokeball', {
-          x: 50, // x-coordinate
+          x: 100, // x-coordinate
           y: 250, // y-coordinate
           vx: event.x/800.0, // velocity in x-direction
           vy: (event.y-250)/800.0, // velocity in y-direction
