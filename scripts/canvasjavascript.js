@@ -88,7 +88,7 @@ Physics(function(world){
   document.onmousedown = function(event) {
       world.add(
         Physics.body('pokeball', {
-          x: 150, // x-coordinate
+          x: 100, // x-coordinate
           y: 250, // y-coordinate
           vx: event.x/800.0, // velocity in x-direction
           vy: (event.y-250)/800.0, // velocity in y-direction
