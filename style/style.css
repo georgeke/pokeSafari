@@ -1,6 +1,12 @@
 /* General */
+@font-face {
+    font-family: "Mine";
+    src: url("Minecraftia-Regular.ttf");
+}
+
 * {
     text-decoration: none;
+    font-family: 'Mine', sans-serif;
 }
 
 article, header {
@@ -15,6 +21,8 @@ article, header {
 /* Header */
 header {
     text-align: center;
+    font-size: 80px;
+    height: 115px;
 }
 
 /* Top Bar */
@@ -26,13 +34,13 @@ header {
     border-bottom: solid black 5px;
 }
 
-span {
-    line-height: 90px;
-    font-size: 70px;
-    font: Courier;
+div span {
+    padding-top: 40px;
+    line-height: 50px;
+    font-size: 50px;
     padding-left: 20px;
     padding-right: 20px;
-    font-family: Courier;
+    font-family: 'Mine', sans-serif;
 }
 
 #wallet {
