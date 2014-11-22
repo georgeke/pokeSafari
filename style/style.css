@@ -1,0 +1,130 @@
+/* General */
+* {
+    text-decoration: none;
+}
+
+article, header {
+    margin: 0 auto;
+}
+
+#topBar, #bottomBar {
+    box-sizing: border-box;
+    border: solid black 1px;
+}
+
+/* Header */
+header {
+    text-align: center;
+}
+
+/* Top Bar */
+#topBar {
+    margin: 0 auto;
+    height: 100px;
+    width: 1000px;
+    background: #FFF7E7;
+    border-bottom: solid black 5px;
+}
+
+span {
+    line-height: 90px;
+    font-size: 70px;
+    font: Courier;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Courier;
+}
+
+#wallet {
+    float: left;
+}
+
+#rate {
+    float: right;
+}
+
+/* Canvas */
+canvas {
+    margin: 0 auto;
+    display: block;
+    width: 1000px;
+    height: 375px;
+    border: solid black 1px;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* Bottom Bar */
+#bottomBar {
+    margin-left: auto ;
+    margin-right: auto ;
+    background: #F0464F;
+    max-height: 230px;
+    width: 1000px;
+    display: block;
+    text-align: center;
+}
+
+/*----- Tabs -----*/
+ul {
+    margin: 0 auto;
+}
+
+.tab {
+    max-height: 200px;
+}
+
+.tabs {
+    width:fill;
+}
+
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+
+    .tab-links li {
+        margin:0px 5px;
+        float:left;
+        list-style:none;
+    }
+
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 0px 0px;
+            background:#F0464F;
+            font-size:16px;
+            font: Courier;
+            color:#fff;
+            transition:all linear 0.15s;
+        }
+
+        .tab-links a:hover {
+            background:#FFF7E7;
+            text-decoration:none;
+        }
+
+    li.active a, li.active a:hover {
+        background:#FDF0D5;
+        color:#4c4c4c;
+    }
+
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding:15px;
+        border-radius:3px;
+        box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+        background:#FDF0D5;
+    }
+
+        .tab {
+            display:none;
+        }
+
+        .tab.active {
+            display:block;
+        }

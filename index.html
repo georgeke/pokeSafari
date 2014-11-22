@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Pokemon Safari!</title>
+      <link rel="stylesheet" href="style/style.css">
+  </head>
+  <body>
+    <header>Pokemon Safari</header>
+    <article>
+      <div id="topBar">
+        <span id="wallet">$0</span>
+        <span id="rate">$0/s</span>
+      </div>
+
+      <div id="container">
+        <canvas></canvas>
+      </div>
+
+      <div id="bottomBar">
+        <div class="tabs">
+          <ul class="tab-links">
+              <li class="active"><a href="#tab1">Upgrades</a></li>
+              <li><a href="#tab2">Pokedex</a></li>
+              <li><a href="#tab3">Game</a></li>
+          </ul>
+
+          <div class="tab-content">
+              <div id="tab1" class="tab active">
+                  <p>Tab #1 content goes here!</p>
+              </div>
+
+              <div id="tab2" class="tab">
+                  <p>Tab #2 content goes here!</p>
+              </div>
+
+              <div id="tab3" class="tab">
+                  <p>Tab #3 content goes here!</p>
+              </div>
+          </div>
+        </div>
+      </div> <!-- end of bottom bar -->
+    </article>
+  </body>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="scripts/game.js"></script>
+  <script>
+    jQuery(document).ready(function() {
+      jQuery('.tabs .tab-links a').on('click', function(e)  {
+          var currentAttrValue = jQuery(this).attr('href');
+
+          // Show/Hide Tabs
+          jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+
+          // Change/remove current tab to active
+          jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+
+            e.preventDefault();
+        });
+    });
+  </script>
+
+</html>
