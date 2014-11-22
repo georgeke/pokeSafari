@@ -34,7 +34,7 @@ header {
     border-bottom: solid black 5px;
 }
 
-div span {
+.cash {
     padding-top: 40px;
     line-height: 50px;
     font-size: 50px;
@@ -67,19 +67,65 @@ iframe {
     margin-left: auto ;
     margin-right: auto ;
     background: #F0464F;
-    max-height: 230px;
+    max-height: 280px;
     width: 1000px;
     display: block;
     text-align: center;
 }
 
-/*----- Tabs -----*/
+/* Upgrades */
+#pokeballs, #strengths, #trainers {
+    float: left;
+}
+
+.upgrade {
+    width: 318px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.upgradeImg {
+    height: 70px;
+}
+
+/* Tabs */
+.picker {
+    width: 130px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.leftArrow, .rightArrow {
+    padding-top: 22px;
+    height: 25px;
+    margin: 0 auto;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.leftArrow {
+    float: left;
+}
+
+.rightArrow {
+    float: right;
+}
+
+h1 {
+    font-size: 25px;
+    line-height: 15px;
+}
+
+h2 {
+    font-size: 15px;
+    line-height: 5px;
+}
+
 ul {
     margin: 0 auto;
 }
 
 .tab {
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .tabs {
@@ -127,6 +173,7 @@ ul {
         border-radius:3px;
         box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
         background:#FDF0D5;
+        height: 180px;
     }
 
         .tab {
