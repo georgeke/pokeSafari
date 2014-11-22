@@ -1,0 +1,21 @@
+types of pokeballs - catch power
+	-Pokeball
+	-Premier ball
+	-Safari ball
+	-Cherish ball
+	-Great ball
+	-Quick ball
+	-Sport ball
+	-Heavy ball
+	-Ultra ball
+	-Master ball
+
+throwing arm - distance
+
+trainers - speed
+	-youngster joey 
+	-Gym Leader Koga
+	-Team Rocket Grunt / done 
+	-PokeManic /done 
+	-Ace Trainer / done 
+	-lass / done 
