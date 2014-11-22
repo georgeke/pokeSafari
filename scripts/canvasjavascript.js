@@ -55,15 +55,17 @@ Physics(function(world){
   var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
 
   // constrain objects to these bounds
-  /*world.add(Physics.behavior('edge-collision-detection', {
+  world.add(Physics.behavior('edge-collision-detection', {
       aabb: viewportBounds,
       restitution: 0.99,
       cof: 0.99
-  }));*/
+  }));
+  world.add(Physics.behavior('body-collision-detection'));
 
   var target = Physics.body('target', {
     x:800,
     y:250,
+    radius:100,
     view: new Image()
   });
   target.view.src = "img/pokemon/bulbasaur.png";
@@ -94,6 +96,25 @@ Physics(function(world){
         })
       );
   }
+
+
+  world.on('collisions:detected', function( data ){
+    var collisions = data.collisions,col;
+    for (var i = 0, l = collisions.length; i < l; ++i)
+    {
+      col = collisions[i];
+      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball')
+      {
+        if (col.bodyA.hit) {
+          col.bodyA.hit();
+        } else if (col.bodyB.hit) {
+          col.bodyB.hit();
+        }
+
+        return;
+      }
+    }
+});
 
   /*world.subscribe('collisions:detected', function (data) {
     var collisions = data.collisions,col;
