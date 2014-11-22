@@ -11,12 +11,13 @@ require.config({
     //...
 });
 
-require([
+require([   
     'scripts/physicsjs-0.6.0/physicsjs-full-0.6.0',
+    'scripts/Sprites/target',
+    'scripts/Sprites/pokeball',
     'scripts/physicsjs-0.6.0/bodies/circle', // will mix into the PhysicsJS library
     'scripts/physicsjs-0.6.0/renderers/canvas',
-    'scripts/physicsjs-0.6.0/renderers/dom',
-    'scripts/physicsjs-0.6.0/renderers/pixi-renderer'
+    'scripts/physicsjs-0.6.0/behaviors/body-collision-detection'
 ], function( Physics ){
 Physics(function(world){
 
@@ -56,17 +57,59 @@ Physics(function(world){
       cof: 0.99
   }));
 
-  // add a circle
+  var target = Physics.body('target', {
+    x:300,
+    y:250,
+    view: new Image()
+  });
+  target.view.src = "img/trainer/Trainer_Lass.png";
+  world.add(target);
+  var trainer = new Image();
+  trainer.src = "img/trainer/2-GymLeaderMisty.png";
   world.add(
-      Physics.body('circle', {
-        x: 50, // x-coordinate
-        y: 30, // y-coordinate
-        vx: 0.2, // velocity in x-direction
-        vy: 0.01, // velocity in y-direction
-        radius: 20
-      })
+    Physics.body('target', {
+      x:20,
+      y:250,
+      view: trainer
+    })
   );
 
+  // add a circle
+  var shotBalls = 1;
+  var pokeball = new Image();
+  pokeball.src = "img/pokeball/10-MasterBall.png";
+  document.onmousedown = function(event) {
+      world.add(
+        Physics.body('pokeball', {
+          x: 50, // x-coordinate
+          y: 250, // y-coordinate
+          vx: event.x/800.0, // velocity in x-direction
+          vy: (event.y-250)/800.0, // velocity in y-direction
+          radius: 20,
+          view: pokeball
+        })
+      );
+      $('#test').html(shotBalls++);
+  }
+
+  /*world.subscribe('collisions:detected', function (data) {
+    var collisions = data.collisions,col;
+    for (var i = 0, l = collisions.length; i < l; ++i)
+    {
+      col = collisions[i];
+      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball')
+      {
+        if (col.bodyA.hit) {
+          col.bodyA.hit();
+        } else if (col.bodyB.hit) {
+          col.bodyB.hit();
+        }
+        return;
+      }
+    }
+  });*/
+
+  world.add(Physics.behavior('body-collision-detection'));
   // ensure objects bounce when edge collision is detected
   world.add( Physics.behavior('body-impulse-response') );
 

@@ -1,0 +1,43 @@
+pallet town
+route 1
+route 2
+	viridian forest
+pewter city (1st gym)
+route 3
+route 4
+	mt moon
+cerulean city (2nd gym)
+route 24
+route 25
+route 5
+route 6
+vermilion city (3rd gym)
+route 11
+	diglett's cave
+route 9
+route 10
+	rock tunnel
+route 8
+route 7
+celadon city (4th gym)
+silph co
+saffron city (5th gym)
+lavender town
+	pokemon tower
+route 12
+route 13
+route 14
+route 15
+fuchsia city (6th gym)
+	safari zone
+route 19
+route 20
+	seafoam islands
+cinnabar island (7th gym)
+	pokemon mansion
+route 21
+viridian city (8th gym)
+route 22
+route 23
+	victory road
+indigo plateau
