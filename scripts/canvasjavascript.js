@@ -17,12 +17,16 @@ require([
     'scripts/Sprites/pokeball',
     'scripts/physicsjs-0.6.0/bodies/circle', // will mix into the PhysicsJS library
     'scripts/physicsjs-0.6.0/renderers/canvas',
-    'scripts/physicsjs-0.6.0/behaviors/body-collision-detection'
+    'scripts/physicsjs-0.6.0/behaviors/body-collision-detection',
+    'scripts/physicsjs-0.6.0/behaviors/body-impulse-response',
+    'scripts/physicsjs-0.6.0/behaviors/newtonian',
+    'scripts/physicsjs-0.6.0/behaviors/sweep-prune'
+
 ], function( Physics ){
 Physics(function(world){
 
-  var viewWidth = 500;
-  var viewHeight = 300;
+  var viewWidth = 1000;
+  var viewHeight = 375;
 
   var renderer = Physics.renderer('canvas', {
     el: 'viewport',
@@ -51,18 +55,18 @@ Physics(function(world){
   var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
 
   // constrain objects to these bounds
-  world.add(Physics.behavior('edge-collision-detection', {
+  /*world.add(Physics.behavior('edge-collision-detection', {
       aabb: viewportBounds,
       restitution: 0.99,
       cof: 0.99
-  }));
+  }));*/
 
   var target = Physics.body('target', {
     x:300,
     y:250,
     view: new Image()
   });
-  target.view.src = "img/trainer/Trainer_Lass.png";
+  target.view.src = "img/pokemon/bulbasaur.png";
   world.add(target);
   var trainer = new Image();
   trainer.src = "img/trainer/2-GymLeaderMisty.png";
