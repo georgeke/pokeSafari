@@ -19,6 +19,7 @@ function(
 	        init: function( options ){
                 parent.init.call(this, options);
                 this.treatment = "static";
+                this.gameType = "target";
              //   this.view = targetImg;
             }
 	    };

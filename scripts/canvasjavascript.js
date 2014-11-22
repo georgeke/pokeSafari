@@ -14,8 +14,10 @@ require.config({
 require([   
     'scripts/physicsjs-0.6.0/physicsjs-full-0.6.0',
     'scripts/Sprites/target',
+    'scripts/Sprites/pokeball',
     'scripts/physicsjs-0.6.0/bodies/circle', // will mix into the PhysicsJS library
-    'scripts/physicsjs-0.6.0/renderers/canvas'
+    'scripts/physicsjs-0.6.0/renderers/canvas',
+    'scripts/physicsjs-0.6.0/behaviors/body-collision-detection'
 ], function( Physics ){
 Physics(function(world){
 
@@ -49,11 +51,11 @@ Physics(function(world){
   var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
 
   // constrain objects to these bounds
-  /*world.add(Physics.behavior('edge-collision-detection', {
+  world.add(Physics.behavior('edge-collision-detection', {
       aabb: viewportBounds,
       restitution: 0.99,
       cof: 0.99
-  }));*/
+  }));
 
   var target = Physics.body('target', {
     x:300,
@@ -73,11 +75,12 @@ Physics(function(world){
   );
 
   // add a circle
+  var shotBalls = 1;
   var pokeball = new Image();
   pokeball.src = "img/pokeball/10-MasterBall.png";
   document.onmousedown = function(event) {
       world.add(
-        Physics.body('circle', {
+        Physics.body('pokeball', {
           x: 50, // x-coordinate
           y: 250, // y-coordinate
           vx: event.x/800.0, // velocity in x-direction
@@ -86,9 +89,27 @@ Physics(function(world){
           view: pokeball
         })
       );
-
+      $('#test').html(shotBalls++);
   }
 
+  /*world.subscribe('collisions:detected', function (data) {
+    var collisions = data.collisions,col;
+    for (var i = 0, l = collisions.length; i < l; ++i)
+    {
+      col = collisions[i];
+      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball')
+      {
+        if (col.bodyA.hit) {
+          col.bodyA.hit();
+        } else if (col.bodyB.hit) {
+          col.bodyB.hit();
+        }
+        return;
+      }
+    }
+  });*/
+
+  world.add(Physics.behavior('body-collision-detection'));
   // ensure objects bounce when edge collision is detected
   world.add( Physics.behavior('body-impulse-response') );
 

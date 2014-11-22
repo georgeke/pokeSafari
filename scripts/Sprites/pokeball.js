@@ -18,6 +18,7 @@ function(
 	    return {
 	        init: function( options ){
                 parent.init.call(this, options);
+                this.gameType = "pokeball";
              //   this.view = targetImg;
             },
             hit: function() {
