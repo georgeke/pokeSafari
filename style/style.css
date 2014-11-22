@@ -52,7 +52,7 @@ div span {
 }
 
 /* Canvas */
-canvas {
+iframe {
     margin: 0 auto;
     display: block;
     width: 1000px;
