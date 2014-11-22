@@ -62,7 +62,7 @@ Physics(function(world){
   }));*/
 
   var target = Physics.body('target', {
-    x:300,
+    x:800,
     y:250,
     view: new Image()
   });
@@ -72,7 +72,7 @@ Physics(function(world){
   trainer.src = "img/trainer/2-GymLeaderMisty.png";
   world.add(
     Physics.body('target', {
-      x:20,
+      x:30,
       y:250,
       view: trainer
     })
@@ -93,7 +93,6 @@ Physics(function(world){
           view: pokeball
         })
       );
-      $('#test').html(shotBalls++);
   }
 
   /*world.subscribe('collisions:detected', function (data) {
