@@ -45,6 +45,11 @@ function initializeUpgrade(type) {
   $("#right" + cap).mouseleave(function(type) {
       $("#right" + cap).attr("src", roots.misc + "lock.png");
     });
+
+  // Hide left arrow
+  if (cur[type] == 1) {
+    $("#left" + cap).attr("src", roots.misc + "leftArrowHidden.png");
+  }
 }
 
 function leftArrow(type) {
@@ -64,12 +69,14 @@ function leftArrow(type) {
   if (cur[type] == 1) {
     // Hide left arrow if at first level
     $("#left" + cap).attr("src", roots.misc + "leftArrowHidden.png");
-    $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
   }
 }
 
 function rightArrow(type) {
   var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  // Checking if buying next upgrade; max level is 10
+  var upgrade = (cur[type] == save[type + "Lvl"] && cur[type] < 10);
+
   if (cur[type] != save[type + "Lvl"]) {
     cur[type]++;
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
@@ -90,16 +97,12 @@ function rightArrow(type) {
         $("#right" + cap).attr("src", roots.misc + "lock.png");
       });
   }
-}
-
-function unlock(type) {
-  var cap = type.charAt(0).toUpperCase() + type.slice(1);
-  $("#right" + cap).attr("src", roots.misc + "unlock.png");
-}
-
-function unlock(type) {
-  var cap = type.charAt(0).toUpperCase() + type.slice(1);
-  $("#right" + cap).attr("src", roots.misc + "unlock.png");
+  if (upgrade) {
+    save[type + "Lvl"]++;
+    save.pInWallet -= eval("get" + cap + "Cost(" + cur[type] + ")");
+    rightArrow(type);
+    $("#wallet").html("$" + save.pInWallet);
+  }
 }
 
 function getPokeballCost(lvl) {

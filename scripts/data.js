@@ -1,7 +1,7 @@
 var save = {
-    pokeballLvl: 10,
-    strengthLvl: 10,
-    trainerLvl: 10,
+    pokeballLvl: 1,
+    strengthLvl: 1,
+    trainerLvl: 1,
     pInWallet: 0,
     pEarned: 0,
     pPerSecond: 0,
