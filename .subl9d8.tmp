@@ -32,36 +32,36 @@
           <div class="tab-content">
               <div id="tab1" class="tab active">
                   <span id="pokeballs" class="upgrade">
-                    <h1 id="headerPokeball"></h1>
-                    <h2 id="costPokeball"></h2>
+                    <h1 id="headerPokemon">Pokeball [1]</h1>
+                    <h2 id="costPokemon">Next: $300</h2>
                     <div class="picker">
-                      <img src="img/misc/leftArrow.png" id="leftPokeball" class="leftArrow" onclick="leftArrow('pokeball');">
-                      <img src="img/pokeball/1-PokeBall.png" id="iconPokeball" class="upgradeImg">
-                      <img src="img/misc/lock.png" id="rightPokeball" class="rightArrow" onclick="rightArrow('pokeball');">
+                      <img src="img/misc/leftArrow.png" id="leftPokemon" class="leftArrow" onclick="leftArrow('pokeball');">
+                      <img src="img/pokeball/1-PokeBall.png" id="iconPokemon" class="upgradeImg">
+                      <img src="img/misc/lock.png" id="rightPokemon" class="rightArrow">
                     </div>
-                    <h2 id="namePokeball"></h2>
+                    <h2 id="namePokemon">PokeBall</h2>
                   </span>
 
                   <span id="strengths" class="upgrade">
-                    <h1 id="headerStrength"></h1>
-                    <h2 id="costStrength"></h2>
+                    <h1 id="headerStrength">Strength [1]</h1>
+                    <h2 id="costStrength">Next: $300</h2>
                     <div class="picker">
-                      <img src="img/misc/leftArrow.png" id="leftStrength" class="leftArrow" onclick="leftArrow('strength');">
+                      <img src="img/misc/leftArrow.png" id="leftStrength" class="leftArrow" onclick="leftArrow('pokeball');">
                       <img src="img/pokeball/1-PokeBall.png" id="iconStrength" class="upgradeImg">
-                      <img src="img/misc/lock.png" id="rightStrength" class="rightArrow" onclick="rightArrow('strength');">
+                      <img src="img/misc/lock.png" id="rightStrength" class="rightArrow">
                     </div>
-                    <h2 id="nameStrength"></h2>
+                    <h2 id="nameStrength">Tyrogue</h2>
                   </span>
 
                   <span id="trainers" class="upgrade">
-                    <h1 id="headerTrainer"></h1>
-                    <h2 id="costTrainer"></h2>
+                    <h1 id="headerPokemon">Pokeball [1]</h1>
+                    <h2 id="costPokemon">Next: $300</h2>
                     <div class="picker">
-                      <img src="img/misc/leftArrow.png" id="leftTrainer" class="leftArrow" onclick="leftArrow('trainer');">
-                      <img src="img/pokeball/1-PokeBall.png" id="iconTrainer" class="upgradeImg">
-                      <img src="img/misc/lock.png" id="rightTrainer" class="rightArrow" onclick="rightArrow('trainer');">
+                      <img src="img/misc/leftArrow.png" id="leftPokemon" class="leftArrow" onclick="leftArrow('pokeball');">
+                      <img src="img/pokeball/1-PokeBall.png" id="iconPokemon" class="upgradeImg">
+                      <img src="img/misc/lock.png" id="rightPokemon" class="rightArrow">
                     </div>
-                    <h2 id="nameTrainer"></h2>
+                    <h2 id="namePokemon">PokeBall</h2>
                   </span>
               </div>
 

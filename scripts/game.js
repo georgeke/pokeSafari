@@ -1,0 +1,128 @@
+// Stores current upgrade value
+var cur = {
+  pokeball: 1,
+  strength: 1,
+  trainer: 1
+}
+
+$(document).ready(function() {
+  /* *
+   * Tab setup
+   */
+  $('.tabs .tab-links a').on('click', function(e)  {
+      var currentAttrValue = $(this).attr('href');
+
+      // Show/Hide Tabs
+      $('.tabs ' + currentAttrValue).show().siblings().hide();
+
+      // Change/remove current tab to active
+      $(this).parent('li').addClass('active').siblings().removeClass('active');
+
+        e.preventDefault();
+    });
+
+  /* *
+   * Updating from save content
+   */
+  $("#wallet").html("$" + save.pInWallet);
+  // Setting values for each upgrade
+  initializeUpgrade("pokeball");
+  initializeUpgrade("strength");
+  initializeUpgrade("trainer");
+});
+
+function initializeUpgrade(type) {
+  var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  cur[type] = save[type + "Lvl"];
+
+  $("#header" + cap).html(cap + " [" + cur[type] + "]");
+  $("#name" + cap).html(map[type][cur[type]].name)
+  $("#icon" + cap).attr("src", map[type][cur[type]].img);
+  $("#cost" + cap).html("Next: $" + eval("get" + cap + "Cost(" + cur[type] + ")"));
+  $("#right" + cap).mouseenter(function(type) {
+      $("#right" + cap).attr("src", roots.misc + "unlock.png");
+    });
+  $("#right" + cap).mouseleave(function(type) {
+      $("#right" + cap).attr("src", roots.misc + "lock.png");
+    });
+}
+
+function leftArrow(type) {
+  // Name of type capitalized (e.g. pokeball -> Pokeball)
+  var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  if (cur[type] != 1) {
+    cur[type]--;
+    // Changing strings and icons based on level
+    $("#header" + cap).html(cap + " [" + cur[type] + "]");
+    $("#name" + cap).html(map[type][cur[type]].name)
+    $("#icon" + cap).attr("src", map[type][cur[type]].img);
+    // Change right arrow back to arrow instead of lock
+    $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
+    // Remove mouse bindings for lock "animation"
+    $("#right" + cap).unbind('mouseenter mouseleave');
+  }
+  if (cur[type] == 1) {
+    // Hide left arrow if at first level
+    $("#left" + cap).attr("src", roots.misc + "leftArrowHidden.png");
+    $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
+  }
+}
+
+function rightArrow(type) {
+  var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  if (cur[type] != save[type + "Lvl"]) {
+    cur[type]++;
+    $("#header" + cap).html(cap + " [" + cur[type] + "]");
+    $("#name" + cap).html(map[type][cur[type]].name)
+    $("#icon" + cap).attr("src", map[type][cur[type]].img);
+    $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
+    $("#right" + cap).unbind('mouseenter mouseleave');
+    // Show left arrow
+    $("#left" + cap).attr("src", roots.misc + "leftArrow.png");
+  }
+  if (cur[type] == save[type + "Lvl"]) {
+    $("#right" + cap).attr("src", roots.misc + "lock.png");
+    // Binding image change for lock animation when mouse hovers
+    $("#right" + cap).mouseenter(function(type) {
+        $("#right" + cap).attr("src", roots.misc + "unlock.png");
+      });
+    $("#right" + cap).mouseleave(function(type) {
+        $("#right" + cap).attr("src", roots.misc + "lock.png");
+      });
+  }
+}
+
+function unlock(type) {
+  var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  $("#right" + cap).attr("src", roots.misc + "unlock.png");
+}
+
+function unlock(type) {
+  var cap = type.charAt(0).toUpperCase() + type.slice(1);
+  $("#right" + cap).attr("src", roots.misc + "unlock.png");
+}
+
+function getPokeballCost(lvl) {
+  // TODO: return cost of pokeball based on level
+  return 500;
+}
+
+function getStrengthCost(lvl) {
+  // TODO: return cost of strength based on level
+  return 700;
+}
+
+function getTrainerCost(lvl) {
+  // TODO: return cost of trainer based on level
+  return 2000;
+}
+
+// Getters for value based on level (e.g. lv 5 pokeball means 500 dmg/hit, etc.)
+function getPokeballVal(lvl) {
+}
+
+function getStrengthVal(lvl) {
+}
+
+function getTrainerVal(lvl) {
+}

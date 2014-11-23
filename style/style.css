@@ -18,6 +18,10 @@ article, header {
     border: solid black 1px;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Header */
 header {
     text-align: center;
@@ -97,7 +101,7 @@ iframe {
 
 .leftArrow, .rightArrow {
     padding-top: 22px;
-    height: 25px;
+    max-height: 50px;
     margin: 0 auto;
     top: 0; bottom: 0; left: 0; right: 0;
 }
