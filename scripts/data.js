@@ -52,8 +52,10 @@ var map = {
     stages: {
         1: {
             lvl: 1,
-            pkmnIds: [],
-            name: "Route 1",
+            commonIds: [1, 4, 7],
+            rareIds: [],
+            sRareIds: [],
+            name: "Pallet Town",
             bgImg: "",
             platformImg: "",
             distance: 30

@@ -1,43 +1,235 @@
-pallet town
-route 1
+Pallet Town
+    starters
+Route 1
+    Pidgey
+    Ratatta
 route 2
-	viridian forest
-pewter city (1st gym)
-route 3
-route 4
-	mt moon
-cerulean city (2nd gym)
-route 24
-route 25
-route 5
-route 6
-vermilion city (3rd gym)
-route 11
-	diglett's cave
-route 9
+    Caterpie
+    Weedle
+      Mr. Mime
+Viridian Forest
+    Metapod
+    Kakuna
+      Pikachu
+      Butterfree
+Pewter Gym - Brock
+    Onix
+    Geodude
+Route 3
+    Pidgeot
+    Spearow
+    Sandshrew
+     Jigglypuff
+Route 4
+    Ekans
+      Parasect
+      Beedrill
+Mt. Moon
+    Geodude
+    Clefable
+    Clefairy
+    Zubat
+      Paras
+Cerulean Gym - Misty
+    Staryu
+    Starmie
+Route 24
+    Pidgeotto
+    Oddish
+      Venonat
+Route 25
+    Bellsprout
+      Abra
+Route 5
+    Meowth
+      Machoke
+Route 6
+    Psyduck
+      Golduck
+    Goldeen
+    Krabby
+Vermilion City
+    Voltorb
+    Pikachu
+    Raichu
+SS Anne - Rival
+    Charmeleon
+    Ivysaur
+    Wartortle
+Route 11
+    Drowzee
+    Raticate
+Diglett's cave
+    Diglett
+      Dugtrio
+Route 9
+    fearow
+    nidoran♀
+    nidoran♂
+      nidorino
+      nidorina
 route 10
-	rock tunnel
+    magnemite
+    voltorb
+      lickitung
+rock tunnel
+      machop
+    geodude
+      onyx
 route 8
+    vulpix
+      flareon
+      kadabra
 route 7
-celadon city (4th gym)
+    oddish
+    growlithe
+      persian
+    eevee
+celadon gym
+    victreebel
+    tangela
+    vilepume
+rocket game corner
+      polygon
+      Vaporeon
+      Jolteon
+      Flareon
 silph co
-saffron city (5th gym)
-lavender town
-	pokemon tower
+    hypno
+    arbok
+      kangaskhan
+saffron gym
+    kadabra
+    Mr. mine
+    venomoth
+    alakazam
+pokemon tower
+    gastly
+      haunter
+    cubone
 route 12
+      snorlax
+    gloom
+    venonat
+      farfetch'd
 route 13
+    horsea
+    poliwag
+    weepinbell
+      ditto
 route 14
+    grimer
+      muk
+    venomoth
 route 15
-fuchsia city (6th gym)
-	safari zone
+    koffing
+    ivysaur
+      weezing
+fuchsia gym
+    koffing
+    muk
+    weezing
+safari zone
+    exeggcute
+    rhyhorn
+      chansey
+      tangela
+      scyther
+      tauros
+      pinsir
+        dratini
+power plant
+    electrode
+    raichu
+    magneton
+      electabuzz
+        zapdos
 route 19
+    tentacool
+      tentacruel
+    staryu
 route 20
-	seafoam islands
-cinnabar island (7th gym)
-	pokemon mansion
+      kingler
+    magikarp
+    shellder
+seafoam islands
+    seel
+    slowpoke
+      dewgong
+      golbat
+        articuno
+cinnabar island
+    omanyte
+    kabuto
+    aerodactyl
+      kabutops
+      omaster
+cinnabar gym
+    growlithe
+    ponyta
+    rapidash
+    arcanine
+pokemon mansion
+    rapidash
+    weezing
+      magmar
+      ninetales
 route 21
-viridian city (8th gym)
-route 22
+      gyarados
+      poliwrath
+    cloyster
+    poliwhirl
+    seadra
+viridian gym
+    rhyhorn
+    dugtrio
+    nidoqueen
+    nidoking
+    rhydon
 route 23
-	victory road
-indigo plateau
+    sandslash
+    primeape
+      slowbro
+victory road
+    machoke
+    golem
+      graveler
+    marowak
+        moltres
+indigo plateau - lorelai
+    dewgong
+    cloyster
+    slowbro
+    jynx
+    lapras
+indigo plateau - bruno
+    onix
+    hitmonchan
+    hitmonlee
+    machamp
+indigo plateau - agatha
+    gengar
+    golbat
+    haunter
+    arbok
+indigo plateau - lance
+    gyarados
+    dragonair
+    aerodactyl
+    dragonite
+champion - blue
+    pidgeot
+    alakazam
+    rhydon
+    exeggutor
+    gyarados
+    charizard
+    blastoise
+    venusaur
+cerulean cave
+    seaking
+    wiggytuff
+    dodrio
+        mewtwo
+faraway island
+    mew
