@@ -19,6 +19,7 @@ var roots = {
     strength: "img/strength/",
     trainer: "img/trainer/",
     gymLeader: "img/trainer/gyms/",
+    stage: "img/stage/",
     misc: "img/misc/"
 }
 

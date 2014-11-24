@@ -45,7 +45,17 @@ $(window).on("message onmessage", function(e) {
 function updateIFrame() {
   var win = document.getElementById("canvas-iframe").contentWindow;
   // TODO: change to full domain path of canvas.html when shipped
-  win.postMessage("test", "*");
+  var payload = {
+    type: "update",
+    rightPlatformUrl: roots.stage + "grass_platform.png",
+    leftPlatformUrl: roots.stage + "grass_platform.png",
+    targetPlatformUrl: roots.pokemon + "78.png",
+    trainerPlatformUrl: map.trainer[cur.trainer].img,
+    pokeballPlatformUrl: map.pokeball[cur.pokeball].img,
+    backgroundUrl: roots.stage + "grass_background.png"
+  }
+
+  win.postMessage(payload, "*");
 }
 
 function initializeUpgrade(type) {
@@ -74,6 +84,7 @@ function leftArrow(type) {
   var cap = type.charAt(0).toUpperCase() + type.slice(1);
   if (cur[type] != 1) {
     cur[type]--;
+    updateIFrame()
     // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
@@ -96,6 +107,7 @@ function rightArrow(type) {
 
   if (cur[type] != save[type + "Lvl"]) {
     cur[type]++;
+    updateIFrame()
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
     $("#icon" + cap).attr("src", map[type][cur[type]].img);
@@ -115,6 +127,7 @@ function rightArrow(type) {
       });
   }
   if (upgrade) {
+    updateIFrame()
     save[type + "Lvl"]++;
     save.pInWallet -= eval("get" + cap + "Cost(" + cur[type] + ")");
     rightArrow(type);

@@ -125,12 +125,12 @@ Physics(function(world){
   $(window).on("message onmessage", function(e) {
     var data = e.originalEvent.data;
 
-    rightPlatform.src = "img/stage/green_platform.png";
-    leftPlatform.src = "img/stage/ice_platform.png";
-    target.src = "img/pokemon/67.png";
-    trainer.src = "img/trainer/10-Trainer_Red.png";
-    pokeball.src = "img/pokeball/2-PremierBall.png";
-    document.body.style.backgroundImage="url('img/stage/cave_background.png')";
+    rightPlatform.src = data.rightPlatformUrl;
+    leftPlatform.src = data.leftPlatformUrl;
+    target.src = data.targetPlatformUrl;
+    trainer.src = data.trainerPlatformUrl;
+    pokeball.src = data.pokeballPlatformUrl;
+    document.body.style.backgroundImage="url('" + data.backgroundUrl + "')";
 
     document.onmousedown = function(event) {
     world.add(
