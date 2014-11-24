@@ -1,4 +1,4 @@
-/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated
+/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated*/
 
 // Stores current upgrade value
 var cur = {
