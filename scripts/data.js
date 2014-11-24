@@ -15,7 +15,7 @@ var save = {
 var roots = {
     pokeball: "img/pokeball/",
     pokemon: "img/pokemon/",
-    pokemonShiny: "img/pokemon/shiny/"
+    pokemonShiny: "img/pokemon/shiny/",
     strength: "img/strength/",
     trainer: "img/trainer/",
     gymLeader: "img/trainer/gyms/",

@@ -127,7 +127,7 @@ Physics(function(world){
 
     rightPlatform.src = "img/stage/green_platform.png";
     leftPlatform.src = "img/stage/ice_platform.png";
-    target.src = "img/pokemon/Spearow.png";
+    target.src = "img/pokemon/67.png";
     trainer.src = "img/trainer/10-Trainer_Red.png";
     pokeball.src = "img/pokeball/2-PremierBall.png";
     document.body.style.backgroundImage="url('img/stage/cave_background.png')";
