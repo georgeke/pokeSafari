@@ -1,4 +1,6 @@
-/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated*/
+/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated
+          figure out way to convert routes.txt file to stag object
+*/
 
 // Stores current upgrade value
 var cur = {
