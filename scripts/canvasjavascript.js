@@ -133,17 +133,28 @@ Physics(function(world){
     document.body.style.backgroundImage="url('" + data.backgroundUrl + "')";
 
     document.onmousedown = function(event) {
-    world.add(
-      Physics.body('pokeball', {
-        x: LEFT_X+21, // x-coordinate
-        y: HEIGHT, // y-coordinate
-        vx: event.x/1200, // velocity in x-direction
-        vy: (event.y-250)/1200, // velocity in y-direction
-        radius: 20,
-        view: pokeball
-      })
-    );
-  }
+      // Calculating x and y components
+      var power = data.strength;
+      var theta = Math.atan((event.y-HEIGHT)/(LEFT_X - event.x));
+      var hypotenuse = power;
+      var veloX = hypotenuse*Math.cos(theta);
+      var veloY = -hypotenuse*Math.sin(theta);
+      console.log(veloX + " " + veloY);
+      //console.log(theta*57.2);
+      console.log(Math.pow(Math.pow(veloX, 2) + Math.pow(veloY, 2), 0.5));
+      //console.log(event.x/1200 + " " + (event.y-250)/1200);
+
+      world.add(
+        Physics.body('pokeball', {
+          x: LEFT_X+21, // x-coordinate
+          y: HEIGHT, // y-coordinate
+          vx: veloX, // velocity in x-direction
+          vy: veloY, // velocity in y-direction
+          radius: 20,
+          view: pokeball
+        })
+      );
+    }
   });
 
   world.on('collisions:detected', function( data ){

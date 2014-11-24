@@ -52,7 +52,8 @@ function updateIFrame() {
     targetPlatformUrl: roots.pokemon + "78.png",
     trainerPlatformUrl: map.trainer[cur.trainer].img,
     pokeballPlatformUrl: map.pokeball[cur.pokeball].img,
-    backgroundUrl: roots.stage + "grass_background.png"
+    backgroundUrl: roots.stage + "grass_background.png",
+    strength: getStrengthVal(cur.strength)
   }
 
   win.postMessage(payload, "*");
@@ -152,10 +153,20 @@ function getTrainerCost(lvl) {
 
 // Getters for value based on level (e.g. lv 5 pokeball means 500 dmg/hit, etc.)
 function getPokeballVal(lvl) {
+  return lvl*500;
 }
 
 function getStrengthVal(lvl) {
+  if (lvl <= 3) {
+    return lvl*0.1 + 0.1
+  } else if (lvl >= 6 && lvl <= 8) {
+    return lvl*0.1*0.91;
+  } else if (lvl > 8) {
+    return lvl*0.1*1.2;
+  }
+  return lvl*0.1;
 }
 
 function getTrainerVal(lvl) {
+  return lvl*500;
 }
