@@ -1,3 +1,5 @@
+/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated
+
 // Stores current upgrade value
 var cur = {
   pokeball: 1,
@@ -5,6 +7,7 @@ var cur = {
   trainer: 1
 }
 
+// Does initial setup of game
 $(document).ready(function() {
   /* *
    * Tab setup
@@ -30,6 +33,18 @@ $(document).ready(function() {
   initializeUpgrade("strength");
   initializeUpgrade("trainer");
 });
+
+// Listener for iframe messaging that it's loaded
+$(window).on("message onmessage", function(e) {
+  updateIFrame();
+});
+
+// Sends save information to iframe for it to update accordingly
+function updateIFrame() {
+  var win = document.getElementById("canvas-iframe").contentWindow;
+  // TODO: change to full domain path of canvas.html when shipped
+  win.postMessage("test", "*");
+}
 
 function initializeUpgrade(type) {
   var cap = type.charAt(0).toUpperCase() + type.slice(1);

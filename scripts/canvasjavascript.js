@@ -24,9 +24,11 @@ require([
 
 ], function( Physics ){
 Physics(function(world){
-
   var viewWidth = 1000;
   var viewHeight = 375;
+  var HEIGHT = 250;
+  var LEFT_X = 150;
+  var RIGHT_X = 850;
 
   var renderer = Physics.renderer('canvas', {
     el: 'viewport',
@@ -62,68 +64,93 @@ Physics(function(world){
   }));
   world.add(Physics.behavior('body-collision-detection'));
   world.add(Physics.behavior('sweep-prune'));
-  var target = Physics.body('target', {
-    x:850,
-    y:250,
-  //  radius:20,
-    view: new Image()
-  });
-  target.view.src = "img/pokemon/bulbasaur.png";
-  world.add(target);
-  var trainer = new Image();
-  trainer.src = "img/trainer/gyms/2-GymLeaderMisty.png";
+
+  /* Left Platform */
+  var leftPlatform = new Image();
+  leftPlatform.src = "";
   world.add(
     Physics.body('target', {
-      x:100,
-      y:250,
+      x:LEFT_X,
+      y:HEIGHT+30,
+      radius:0,
+      view: leftPlatform
+    })
+  );
+
+  /* Right Platform */
+  var rightPlatform = new Image();
+  rightPlatform.src = "";
+  world.add(
+    Physics.body('target', {
+      x:RIGHT_X,
+      y:HEIGHT+30,
+      radius:0,
+      view: rightPlatform
+    })
+  );
+
+  /* Pokemon */
+  var target = new Image();
+  target.src = "";
+  world.add(
+    Physics.body('target', {
+      x:RIGHT_X,
+      y:HEIGHT,
+      view: target
+    })
+  );
+
+  /* Trainer */
+  var trainer = new Image();
+  trainer.src = "";
+  world.add(
+    Physics.body('target', {
+      x:LEFT_X,
+      y:HEIGHT,
       radius:0,
       view: trainer
     })
   );
 
-  // add a circle
+  /* Pokeball */
   var shotBalls = 1;
   var pokeball = new Image();
-  pokeball.src = "img/pokeball/10-MasterBall.png";
-  document.onmousedown = function(event) {
-      world.add(
-        Physics.body('pokeball', {
-          x: 150, // x-coordinate
-          y: 250, // y-coordinate
-          vx: event.x/1600.0, // velocity in x-direction
-          vy: (event.y-250)/1600.0, // velocity in y-direction
-          radius: 20,
-          view: pokeball
-        })
-      );
-  }
+  pokeball.src = "";
 
+  // Alerting index that the iframe is loaded
+  // TODO: change to index.html full path
+  parent.postMessage("anything", "*");
+
+  // This on message will update the various images based on upgrades, etc.
+  $(window).on("message onmessage", function(e) {
+    var data = e.originalEvent.data;
+
+    rightPlatform.src = "img/stage/green_platform.png";
+    leftPlatform.src = "img/stage/ice_platform.png";
+    target.src = "img/pokemon/Spearow.png";
+    trainer.src = "img/trainer/10-Trainer_Red.png";
+    pokeball.src = "img/pokeball/2-PremierBall.png";
+    document.body.style.backgroundImage="url('img/stage/cave_background.png')";
+
+    document.onmousedown = function(event) {
+    world.add(
+      Physics.body('pokeball', {
+        x: LEFT_X+21, // x-coordinate
+        y: HEIGHT, // y-coordinate
+        vx: event.x/1200, // velocity in x-direction
+        vy: (event.y-250)/1200, // velocity in y-direction
+        radius: 20,
+        view: pokeball
+      })
+    );
+  }
+  });
 
   world.on('collisions:detected', function( data ){
     var collisions = data.collisions,col;
-    for (var i = 0, l = collisions.length; i < l; ++i)
-    {
+    for (var i = 0, l = collisions.length; i < l; ++i) {
       col = collisions[i];
-      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball')
-      {
-        if (col.bodyA.hit) {
-          col.bodyA.hit();
-        } else if (col.bodyB.hit) {
-          col.bodyB.hit();
-        }
-
-        return;
-      }
-    }
-});
-
-  /*world.subscribe('collisions:detected', function (data) {
-    var collisions = data.collisions,col;
-    for (var i = 0, l = collisions.length; i < l; ++i)
-    {
-      col = collisions[i];
-      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball')
-      {
+      if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball') {
         if (col.bodyA.hit) {
           col.bodyA.hit();
         } else if (col.bodyB.hit) {
@@ -132,7 +159,7 @@ Physics(function(world){
         return;
       }
     }
-  });*/
+  });
 
   world.add(Physics.behavior('body-collision-detection'));
   // ensure objects bounce when edge collision is detected
@@ -142,14 +169,12 @@ Physics(function(world){
   world.add( Physics.behavior('constant-acceleration') );
 
   // subscribe to ticker to advance the simulation
-  Physics.util.ticker.on(function( time, dt ){
-
-      world.step( time );
+  Physics.util.ticker.on(function(time, dt) {
+      world.step(time);
   });
 
   // start the ticker
   Physics.util.ticker.start();
-
 });
 
 });

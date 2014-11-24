@@ -1,11 +1,11 @@
-- add tab to change stages
-- map images to names to IDs
-	- able to scroll through upgrades
-	- buy upgrades
+- be able to change stages
+X map images to names to IDs
+	X able to scroll through upgrades
+	X buy upgrades
 - calculate stats on the fly
 - fix throwing physics
-- add enemy dying, add money
-- add pokemon for each stage
+- add enemy dying, X add money
+X add pokemon for each stage
 	- add chances for shiny, special, etc
 - pokedex working
 	- global dictionary storing each catch
