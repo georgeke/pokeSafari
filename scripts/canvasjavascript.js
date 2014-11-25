@@ -29,6 +29,7 @@ Physics(function(world){
   var HEIGHT = 250;
   var LEFT_X = 150;
   var RIGHT_X = 850;
+  var curHp;
 
   var renderer = Physics.renderer('canvas', {
     el: 'viewport',
@@ -125,36 +126,38 @@ Physics(function(world){
   $(window).on("message onmessage", function(e) {
     var data = e.originalEvent.data;
 
-    rightPlatform.src = data.rightPlatformUrl;
-    leftPlatform.src = data.leftPlatformUrl;
-    target.src = data.targetPlatformUrl;
-    trainer.src = data.trainerPlatformUrl;
-    pokeball.src = data.pokeballPlatformUrl;
-    document.body.style.backgroundImage="url('" + data.backgroundUrl + "')";
+    if (data.type == "stage") {
+      rightPlatform.src = data.rightPlatformUrl;
+      leftPlatform.src = data.leftPlatformUrl;
+      target.src = data.targetUrl;
+      document.body.style.backgroundImage="url('" + data.backgroundUrl + "')";
+    } else if (data.type == "upgrade") {
+      trainer.src = data.trainerUrl;
+      pokeball.src = data.pokeballUrl;
+      document.onmousedown = function(event) {
+        // Calculating x and y components
+        var power = data.strength;
+        var theta = Math.atan((event.y-HEIGHT)/(LEFT_X - event.x));
+        var hypotenuse = power;
+        var veloX = hypotenuse*Math.cos(theta);
+        var veloY = -hypotenuse*Math.sin(theta);
+        console.log(veloX + " " + veloY);
+        //console.log(theta*57.2);
+        console.log(Math.pow(Math.pow(veloX, 2) + Math.pow(veloY, 2), 0.5));
+        //console.log(event.x/1200 + " " + (event.y-250)/1200);
 
-    document.onmousedown = function(event) {
-      // Calculating x and y components
-      var power = data.strength;
-      var theta = Math.atan((event.y-HEIGHT)/(LEFT_X - event.x));
-      var hypotenuse = power;
-      var veloX = hypotenuse*Math.cos(theta);
-      var veloY = -hypotenuse*Math.sin(theta);
-      console.log(veloX + " " + veloY);
-      //console.log(theta*57.2);
-      console.log(Math.pow(Math.pow(veloX, 2) + Math.pow(veloY, 2), 0.5));
-      //console.log(event.x/1200 + " " + (event.y-250)/1200);
-
-      world.add(
-        Physics.body('pokeball', {
-          x: LEFT_X+21, // x-coordinate
-          y: HEIGHT, // y-coordinate
-          vx: veloX, // velocity in x-direction
-          vy: veloY, // velocity in y-direction
-          radius: 20,
-          view: pokeball
-        })
-      );
-    }
+        world.add(
+          Physics.body('pokeball', {
+            x: LEFT_X+21, // x-coordinate
+            y: HEIGHT, // y-coordinate
+            vx: veloX, // velocity in x-direction
+            vy: veloY, // velocity in y-direction
+            radius: 20,
+            view: pokeball
+          })
+        );
+      }
+    } // end if
   });
 
   world.on('collisions:detected', function( data ){

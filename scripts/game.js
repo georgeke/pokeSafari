@@ -1,4 +1,4 @@
-/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateIFrame function to more places where things are updated
+/* TODO: add payloard to be send to canvas everytime stuff updates. Add updateUpgrades function to more places where things are updated
           figure out way to convert routes.txt file to stag object
 */
 
@@ -38,22 +38,34 @@ $(document).ready(function() {
 
 // Listener for iframe messaging that it's loaded
 $(window).on("message onmessage", function(e) {
-  updateIFrame();
+  updateUpgrades();
+  updateStage();
 });
 
-// Sends save information to iframe for it to update accordingly
-function updateIFrame() {
+// Sends save information to iframe on Upgrades for it to update accordingly
+function updateUpgrades() {
   var win = document.getElementById("canvas-iframe").contentWindow;
   // TODO: change to full domain path of canvas.html when shipped
   var payload = {
-    type: "update",
+    type: "upgrade",
+    trainerUrl: map.trainer[cur.trainer].img,
+    pokeballUrl: map.pokeball[cur.pokeball].img,
+    strength: getStrengthVal(cur.strength)
+  }
+
+  win.postMessage(payload, "*");
+}
+
+// Sends save information to iframe on current stage
+function updateStage() {
+  var win = document.getElementById("canvas-iframe").contentWindow;
+  // TODO: change to full domain path of canvas.html when shipped
+  var payload = {
+    type: "stage",
     rightPlatformUrl: roots.stage + "grass_platform.png",
     leftPlatformUrl: roots.stage + "grass_platform.png",
-    targetPlatformUrl: roots.pokemon + "78.png",
-    trainerPlatformUrl: map.trainer[cur.trainer].img,
-    pokeballPlatformUrl: map.pokeball[cur.pokeball].img,
-    backgroundUrl: roots.stage + "grass_background.png",
-    strength: getStrengthVal(cur.strength)
+    targetUrl: roots.pokemon + "78.png",
+    backgroundUrl: roots.stage + "grass_background.png"
   }
 
   win.postMessage(payload, "*");
@@ -85,7 +97,7 @@ function leftArrow(type) {
   var cap = type.charAt(0).toUpperCase() + type.slice(1);
   if (cur[type] != 1) {
     cur[type]--;
-    updateIFrame()
+    updateUpgrades()
     // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
@@ -108,7 +120,7 @@ function rightArrow(type) {
 
   if (cur[type] != save[type + "Lvl"]) {
     cur[type]++;
-    updateIFrame()
+    updateUpgrades()
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
     $("#icon" + cap).attr("src", map[type][cur[type]].img);
@@ -128,7 +140,7 @@ function rightArrow(type) {
       });
   }
   if (upgrade) {
-    updateIFrame()
+    updateUpgrades()
     save[type + "Lvl"]++;
     save.pInWallet -= eval("get" + cap + "Cost(" + cur[type] + ")");
     rightArrow(type);
