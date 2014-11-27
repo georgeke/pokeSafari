@@ -68,7 +68,7 @@ Physics(function(world){
 
   /* Left Platform */
   var leftPlatform = new Image();
-  leftPlatform.src = "";
+  leftPlatform.src = "img/stage/grass_platform.png";
   world.add(
     Physics.body('target', {
       x:LEFT_X,

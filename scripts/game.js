@@ -48,8 +48,8 @@ function updateUpgrades() {
   // TODO: change to full domain path of canvas.html when shipped
   var payload = {
     type: "upgrade",
-    trainerUrl: map.trainer[cur.trainer].img,
-    pokeballUrl: map.pokeball[cur.pokeball].img,
+    trainerUrl: roots.trainer + cur.trainer + ".png",
+    pokeballUrl: roots.pokeball + cur.pokeball + ".png",
     strength: getStrengthVal(cur.strength)
   }
 
@@ -77,7 +77,7 @@ function initializeUpgrade(type) {
 
   $("#header" + cap).html(cap + " [" + cur[type] + "]");
   $("#name" + cap).html(map[type][cur[type]].name)
-  $("#icon" + cap).attr("src", map[type][cur[type]].img);
+  $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
   $("#cost" + cap).html("Next: $" + eval("get" + cap + "Cost(" + cur[type] + ")"));
   $("#right" + cap).mouseenter(function(type) {
       $("#right" + cap).attr("src", roots.misc + "unlock.png");
@@ -101,7 +101,7 @@ function leftArrow(type) {
     // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
-    $("#icon" + cap).attr("src", map[type][cur[type]].img);
+    $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
     // Change right arrow back to arrow instead of lock
     $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
     // Remove mouse bindings for lock "animation"
@@ -121,9 +121,10 @@ function rightArrow(type) {
   if (cur[type] != save[type + "Lvl"]) {
     cur[type]++;
     updateUpgrades()
+    // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
     $("#name" + cap).html(map[type][cur[type]].name)
-    $("#icon" + cap).attr("src", map[type][cur[type]].img);
+    $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
     $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
     $("#right" + cap).unbind('mouseenter mouseleave');
     // Show left arrow
@@ -150,17 +151,17 @@ function rightArrow(type) {
 
 function getPokeballCost(lvl) {
   // TODO: return cost of pokeball based on level
-  return 500;
+  return lvl*lvl*500;
 }
 
 function getStrengthCost(lvl) {
   // TODO: return cost of strength based on level
-  return 700;
+  return lvl*lvl*700;
 }
 
 function getTrainerCost(lvl) {
   // TODO: return cost of trainer based on level
-  return 2000;
+  return lvl*lvl*2000;
 }
 
 // Getters for value based on level (e.g. lv 5 pokeball means 500 dmg/hit, etc.)

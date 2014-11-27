@@ -61,10 +61,22 @@ iframe {
     display: block;
     width: 1000px;
     height: 375px;
-    border: solid black 1px;
-    box-sizing: border-box;
     padding: 0;
 }
+/*
+    -ms-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+}
+
+.container {
+    width: 100px;
+    height: 37px;
+    padding: 0;
+    overflow: hidden;
+} */
 
 /* Bottom Bar */
 #bottomBar {
