@@ -76,7 +76,7 @@ function initializeUpgrade(type) {
   cur[type] = save[type + "Lvl"];
 
   $("#header" + cap).html(cap + " [" + cur[type] + "]");
-  $("#name" + cap).html(map[type][cur[type]].name)
+  $("#name" + cap).html(map[type][cur[type]])
   $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
   $("#cost" + cap).html("Next: $" + eval("get" + cap + "Cost(" + cur[type] + ")"));
   $("#right" + cap).mouseenter(function(type) {
@@ -100,7 +100,7 @@ function leftArrow(type) {
     updateUpgrades()
     // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
-    $("#name" + cap).html(map[type][cur[type]].name)
+    $("#name" + cap).html(map[type][cur[type]])
     $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
     // Change right arrow back to arrow instead of lock
     $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
@@ -123,7 +123,7 @@ function rightArrow(type) {
     updateUpgrades()
     // Changing strings and icons based on level
     $("#header" + cap).html(cap + " [" + cur[type] + "]");
-    $("#name" + cap).html(map[type][cur[type]].name)
+    $("#name" + cap).html(map[type][cur[type]])
     $("#icon" + cap).attr("src", roots[type] + cur[type] + ".png");
     $("#right" + cap).attr("src", roots.misc + "rightArrow.png");
     $("#right" + cap).unbind('mouseenter mouseleave');
@@ -143,25 +143,29 @@ function rightArrow(type) {
   if (upgrade) {
     updateUpgrades()
     save[type + "Lvl"]++;
+    // Update current money;
     save.pInWallet -= eval("get" + cap + "Cost(" + cur[type] + ")");
+    // Call right arrow to move to next unlock
     rightArrow(type);
+    // Update display
     $("#wallet").html("$" + save.pInWallet);
+    $("#cost" + cap).html("Next: $" + eval("get" + cap + "Cost(" + (cur[type]+1) + ")"));
   }
 }
 
 function getPokeballCost(lvl) {
   // TODO: return cost of pokeball based on level
-  return lvl*lvl*500;
+  return Math.pow(2, lvl)*500;
 }
 
 function getStrengthCost(lvl) {
   // TODO: return cost of strength based on level
-  return lvl*lvl*700;
+  return Math.pow(2, lvl)*700;
 }
 
 function getTrainerCost(lvl) {
   // TODO: return cost of trainer based on level
-  return lvl*lvl*2000;
+  return Math.pow(2, lvl)*2000;
 }
 
 // Getters for value based on level (e.g. lv 5 pokeball means 500 dmg/hit, etc.)
