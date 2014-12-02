@@ -1,15 +1,17 @@
 var save = {
     pokeballLvl: 1,
-    strengthLvl: 1,
+    strengthLvl: 7,
     trainerLvl: 1,
-    pInWallet: 0,
+    pokedollars: 0,
     pEarned: 0,
     pPerSecond: 0,
     ballsThrownManually: 0,
     ballsThrownTotal: 0,
     shinyCaught: 0,
     totalCaught: 0,
-    uniqueCaught: 0
+    uniqueCaught: 0,
+    pokemonCaught: new Array(152),
+    shinyCaught: new Array(152)
 }
 
 var roots = {

@@ -15,6 +15,8 @@ require([
     'scripts/physicsjs-0.6.0/physicsjs-full-0.6.0',
     'scripts/Sprites/target',
     'scripts/Sprites/pokeball',
+    'scripts/Sprites/pokemon',
+    'scripts/Sprites/trainer',
     'scripts/physicsjs-0.6.0/bodies/circle', // will mix into the PhysicsJS library
     'scripts/physicsjs-0.6.0/renderers/canvas',
     'scripts/physicsjs-0.6.0/behaviors/body-collision-detection',
@@ -29,7 +31,7 @@ Physics(function(world){
   var HEIGHT = 250;
   var LEFT_X = 150;
   var RIGHT_X = 850;
-  var curHp;
+  var curHp = 100;
 
   var renderer = Physics.renderer('canvas', {
     el: 'viewport',
@@ -55,15 +57,14 @@ Physics(function(world){
   });
 
   // bounds of the window
-  var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
+  var viewportBounds = Physics.aabb(100, 100, viewWidth, viewHeight);
 
   // constrain objects to these bounds
-  world.add(Physics.behavior('edge-collision-detection', {
-      aabb: viewportBounds,
-      restitution: 0.99,
-      cof: 0.99
-  }));
-  world.add(Physics.behavior('body-collision-detection'));
+  // world.add(Physics.behavior('edge-collision-detection', {
+  //     aabb: viewportBounds,
+  //     restitution: 0.99,
+  //     cof: 0.99
+  // }));
   world.add(Physics.behavior('sweep-prune'));
 
   /* Left Platform */
@@ -91,13 +92,13 @@ Physics(function(world){
   );
 
   /* Pokemon */
-  var target = new Image();
-  target.src = "";
+  var pokemon = new Image();
+  pokemon.src = "";
   world.add(
-    Physics.body('target', {
+    Physics.body('pokemon', {
       x:RIGHT_X,
       y:HEIGHT,
-      view: target
+      view: pokemon
     })
   );
 
@@ -105,7 +106,7 @@ Physics(function(world){
   var trainer = new Image();
   trainer.src = "";
   world.add(
-    Physics.body('target', {
+    Physics.body('trainer', {
       x:LEFT_X,
       y:HEIGHT,
       radius:0,
@@ -120,7 +121,11 @@ Physics(function(world){
 
   // Alerting index that the iframe is loaded
   // TODO: change to index.html full path
-  parent.postMessage("anything", "*");
+  var payload = {
+    type: "message",
+    content: "loaded"
+  }
+  parent.postMessage(payload, "*");
 
   // This on message will update the various images based on upgrades, etc.
   $(window).on("message onmessage", function(e) {
@@ -129,7 +134,7 @@ Physics(function(world){
     if (data.type == "stage") {
       rightPlatform.src = data.rightPlatformUrl;
       leftPlatform.src = data.leftPlatformUrl;
-      target.src = data.targetUrl;
+      pokemon.src = data.targetUrl;
       document.body.style.backgroundImage="url('" + data.backgroundUrl + "')";
     } else if (data.type == "upgrade") {
       trainer.src = data.trainerUrl;
@@ -141,9 +146,9 @@ Physics(function(world){
         var hypotenuse = power;
         var veloX = hypotenuse*Math.cos(theta);
         var veloY = -hypotenuse*Math.sin(theta);
-        console.log(veloX + " " + veloY);
+        //console.log(veloX + " " + veloY);
         //console.log(theta*57.2);
-        console.log(Math.pow(Math.pow(veloX, 2) + Math.pow(veloY, 2), 0.5));
+        //console.log(Math.pow(Math.pow(veloX, 2) + Math.pow(veloY, 2), 0.5));
         //console.log(event.x/1200 + " " + (event.y-250)/1200);
 
         world.add(
@@ -162,15 +167,32 @@ Physics(function(world){
 
   world.on('collisions:detected', function( data ){
     var collisions = data.collisions,col;
+    debugger;
     for (var i = 0, l = collisions.length; i < l; ++i) {
       col = collisions[i];
+      // Note: Body A and B are the bodies that hit together.
+      // Pokeball hit detection
       if (col.bodyA.gameType === 'pokeball' || col.bodyB.gameType === 'pokeball') {
         if (col.bodyA.hit) {
           col.bodyA.hit();
         } else if (col.bodyB.hit) {
           col.bodyB.hit();
         }
-        return;
+      }
+      // Pokemon getting hit
+      if (col.bodyB.gameType === 'pokemon') {
+        // Pokeball hit target
+        curHp -= 25;
+        if (curHp <= 0) {
+          // Notify game that pokemon has been caught
+          payload = {
+            type: "capture",
+            pokemonId: 4,
+            "shiny?": 43432
+          }
+          parent.postMessage(payload, "*");
+          curHp = 100;
+        }
       }
     }
   });
